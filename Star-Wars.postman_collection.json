@@ -1,0 +1,206 @@
+{
+	"info": {
+		"_postman_id": "cc2f5a6c-724f-4d18-a689-cf00da57bab3",
+		"name": "Star-Wars",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "40110368"
+	},
+	"item": [
+		{
+			"name": "films",
+			"item": [
+				{
+					"name": "createFilms",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/v1/films/",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"v1",
+								"films",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getAllFilms",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/v1/films/",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"v1",
+								"films",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getFilmById",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/v1/films/{{}}/",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"v1",
+								"films",
+								"{{}}",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "peoples",
+			"item": [
+				{
+					"name": "createPeoples",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/v1/peoples",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"v1",
+								"peoples"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getAllPeoples",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/v1/peoples/",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"v1",
+								"peoples",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getPeopleById",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/v1/peoples/{{}}",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"v1",
+								"peoples",
+								"{{}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
