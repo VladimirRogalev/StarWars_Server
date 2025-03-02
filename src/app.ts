@@ -1,6 +1,7 @@
 import 'reflect-metadata';
 import dotenv from 'dotenv';
 import express, {Application, NextFunction, Request, Response} from 'express';
+import cors from "cors";
 import {useExpressServer} from 'routing-controllers';
 import StarWarsFilmsController from './films/controllers/StarWarsFilmsController';
 import mongoose from 'mongoose';
@@ -21,6 +22,7 @@ mongoose.connect(MONGO_URI!)
 const app: Application = express();
 const PORT = 8080;
 
+app.use(cors());
 app.use(express.json());
 
 
