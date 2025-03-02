@@ -1,5 +1,6 @@
 
 
+
 export default class PeopleDto {
     birth_year: string;
     created: string;

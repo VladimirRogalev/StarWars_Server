@@ -16,7 +16,7 @@ export  interface IPeople extends Document {
     skin_color: string
 }
 
-const peopleSchema : Schema = new Schema <IPeople> (
+const peopleSchema  = new Schema <IPeople> (
     {
         birth_year:{type: String, required: true},
         created: {type: String, required: true},

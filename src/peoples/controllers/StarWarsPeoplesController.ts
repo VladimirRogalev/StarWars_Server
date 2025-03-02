@@ -1,4 +1,4 @@
-import {Body, Get, JsonController, Param, Post} from 'routing-controllers';
+import {BadRequestError, Body, Get, JsonController, Param, Post,} from 'routing-controllers';
 import StarWarsPeoplesService from '../service/StarWarsPeoplesService';
 import StarWarsPeoplesServiceImpl from '../service/StarWarsPeoplesServiceImpl';
 import NewPeoplesDto from '../dto/NewPeoplesDto';
@@ -18,8 +18,13 @@ export default class StarWarsPeoplesController {
         return await this.starWarsPeoplesService.getAllPeoples();
     }
 
+
     @Get('/peoples/:id')
-    async getPeopleById(@Param('id') id: string,) {
+    async getPeopleById(@Param('id') id: string) {
+        const parseId = Number(id);
+        if(isNaN(parseId)){
+        throw new BadRequestError("Id must be a number")
+        }
         return await this.starWarsPeoplesService.getPeopleById(id);
     }
 

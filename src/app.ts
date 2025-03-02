@@ -23,20 +23,23 @@ const PORT = 8080;
 
 app.use(express.json());
 
-app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
-    console.log(err.message);
-    res.status(400).json({error: err.message});
-});
 
 useExpressServer(app, {
     controllers: [StarWarsFilmsController, StarWarsPeoplesController],
-    middlewares: [],
+    defaultErrorHandler: false,
+    middlewares: []
+});
+
+app.use((err: any, req: Request, res: Response, next: NextFunction) => {
+    console.log(err.message);
+    const status = err.httpCode || err.status || 500;
+    res.status(status).json({error: err.message});
 });
 
 async function startServer() {
-        app.listen(PORT, () => {
-            console.log(`http://localhost:${PORT}`);
-        });
+    app.listen(PORT, () => {
+        console.log(`http://localhost:${PORT}`);
+    });
 }
 
 startServer().catch(console.error);

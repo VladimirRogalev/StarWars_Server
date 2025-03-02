@@ -1,6 +1,6 @@
 import StarWarsPeoplesService from './StarWarsPeoplesService';
 import NewPeoplesDto from '../dto/NewPeoplesDto';
-import {BadRequestError, InternalServerError, NotFoundError} from 'routing-controllers';
+import {BadRequestError, NotFoundError} from 'routing-controllers';
 import {People} from '../model/People';
 import PeopleDto from '../dto/PeopleDto';
 
@@ -10,19 +10,14 @@ export default class StarWarsPeoplesServiceImpl implements StarWarsPeoplesServic
         if (!newPeoplesDto || newPeoplesDto.length === 0) {
             throw new BadRequestError('Request must contain at least one people.');
         }
-        try {
             await People.insertMany(newPeoplesDto);
             return {message: 'Peoples added'};
-        } catch (err) {
-            console.error('Database Error:', err);
-            throw new InternalServerError('Failed to save peoples. Please try again.');
-        }
     }
 
     async getAllPeoples(): Promise<PeopleDto[]> {
         const peoples = await People.find();
         if (peoples.length === 0) {
-            throw new NotFoundError(`Films not found`);
+            throw new NotFoundError(`Peoples not found`);
         }
 
         return peoples.map(people => ({
@@ -44,7 +39,7 @@ export default class StarWarsPeoplesServiceImpl implements StarWarsPeoplesServic
 
     async getPeopleById(id: string): Promise<PeopleDto> {
         const people = await People.findOne({id});
-        if (people === null) {
+        if (!people) {
             throw new NotFoundError(`People with id ${id} not found`);
         }
         return {

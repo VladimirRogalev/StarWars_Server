@@ -1,5 +1,4 @@
 import NewPeoplesDto from '../dto/NewPeoplesDto';
-
 import PeopleDto from '../dto/PeopleDto';
 
 export default interface StarWarsPeoplesService {

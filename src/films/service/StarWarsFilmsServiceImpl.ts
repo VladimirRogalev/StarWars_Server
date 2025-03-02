@@ -1,7 +1,7 @@
 import StarWarsFilmsService from './StarWarsFilmsService';
 import NewFilmsDto from '../dto/NewFilmsDto';
 import {Film} from '../model/Film';
-import {BadRequestError, InternalServerError, NotFoundError} from 'routing-controllers';
+import {BadRequestError, NotFoundError} from 'routing-controllers';
 import FilmDto from '../dto/FilmDto';
 
 export default class StarWarsFilmsServiceImpl implements StarWarsFilmsService {
@@ -9,13 +9,8 @@ export default class StarWarsFilmsServiceImpl implements StarWarsFilmsService {
         if (!newFilmsDto || newFilmsDto.length === 0) {
             throw new BadRequestError('Request must contain at least one film.');
         }
-        try {
             await Film.insertMany(newFilmsDto);
             return {message: 'Film added'};
-        } catch (err) {
-            console.error('Database Error:', err);
-            throw new InternalServerError('Failed to save films. Please try again.');
-        }
     }
 
     async getAllFilms(): Promise<FilmDto[]> {
@@ -44,9 +39,10 @@ export default class StarWarsFilmsServiceImpl implements StarWarsFilmsService {
 
     async getFilmById(id: string): Promise<FilmDto> {
         const film = await Film.findOne({id});
-        if (film === null) {
+        if (!film) {
             throw new NotFoundError(`Film with id ${id} not found`);
         }
+
         return {
             id: film.id,
             starships: film.starships,
