@@ -6,8 +6,9 @@ import {useExpressServer} from 'routing-controllers';
 import StarWarsFilmsController from './films/controllers/StarWarsFilmsController';
 import mongoose from 'mongoose';
 import StarWarsPeoplesController from './peoples/controllers/StarWarsPeoplesController';
+import StarWarsPlanetsController from './planets/controllers/StarWarsPlanetsController';
 
-
+// Need create .env files
 dotenv.config();
 
 const MONGO_URI = process.env.MONGO_URI;
@@ -24,10 +25,11 @@ const PORT = 8080;
 
 app.use(cors());
 app.use(express.json());
+app.use(express.static('public'));
 
 
 useExpressServer(app, {
-    controllers: [StarWarsFilmsController, StarWarsPeoplesController],
+    controllers: [StarWarsFilmsController, StarWarsPeoplesController, StarWarsPlanetsController],
     defaultErrorHandler: false,
     middlewares: []
 });
